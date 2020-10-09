@@ -62,4 +62,4 @@ def calc_divisible_rowsum(data):
     return rowsum
 
 rowsum = calc_divisible_rowsum(spreadsheet)
-print(f"Answer 2d: {int(rowsum)}")
+print(f"Answer 2b: {int(rowsum)}")
