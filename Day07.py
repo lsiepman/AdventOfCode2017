@@ -51,7 +51,7 @@ Given that exactly one program is the wrong weight, what would its weight need t
 weights = {}
 for i in data:
     disc = re.search("^[a-z]+", i).group()
-    weights[disc] = int(re.search(f"{disc} \(([0-9]+)\)", i).group(1))
+    weights[disc] = int(re.search(fr"{disc} \(([0-9]+)\)", i).group(1))
 
 stack = {}
 for i in data:
