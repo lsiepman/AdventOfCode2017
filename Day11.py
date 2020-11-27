@@ -47,3 +47,28 @@ print(f"Distance to kid: {sum(location) / 2} tiles")
 """
 How many steps away is the furthest he ever got from his starting position?
 """
+def max_dist(data):
+    y = 0 # North - South 
+    x = 0 # North West - South East
+    max_loc = 0
+    
+    for direction in data:
+        if direction == "n":
+            y += 1
+        elif direction == "s":
+            y -= 1
+        elif direction == "nw":
+            x += 1
+        elif direction == "se":
+            x -= 1
+        elif direction == "ne":
+            x -= 1
+            y += 1
+        elif direction == "sw":
+            x += 1
+            y -= 1
+        max_loc = max(abs(y), abs(x), abs(-x-y), max_loc)
+
+    return max_loc
+
+print(f"Max distance kid: {max_dist(data)}")
