@@ -43,7 +43,7 @@ def find_connections(data, group="0"):
         if len(old) == len(new):
             return (len(new))
         else:
-            old = old | new
+            old.update(new)
 
 print(f"Answer part 1: {find_connections(data)}")
 
@@ -54,18 +54,18 @@ print(f"Answer part 1: {find_connections(data)}")
 ***REMOVED***
 Now, they would like you to determine the total number of groups.
 """
-def find_members(data, group="0"):
-    old = set(group)
+def find_members(data, group):
+    old = set([group])
     new = set()
 
     while True: 
+        old_length = len(old)
         for i in old:
             new.update(data[i])
 
-        if len(old) == len(new):
-            return new
-        else:
-            old = old | new
+        old = old | new
+        if len(old) == old_length:
+            return old           
 
 def find_groups(data):
     all_progs = set(data.keys())
@@ -74,7 +74,8 @@ def find_groups(data):
     
     while len(grouped_progs) < len(all_progs):
         not_in_common = all_progs - grouped_progs
-        grouped_progs.update(find_members(data, group=list(not_in_common)[0]))
+        progs = find_members(data, group=list(not_in_common)[0])
+        grouped_progs.update(progs)
         num_groups += 1
 
     return num_groups
