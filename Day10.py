@@ -56,11 +56,7 @@ def part_1(numbers, data):
 
     return numbers
 
-test_numbers = [0, 1, 2, 3, 4]
-test_data = [3, 4, 1, 5]
 
-numbers = part_1(numbers, data)
-print(f"Answer 10a: {numbers[0] * numbers [1]}")
 
 # GOAL 2
 """
@@ -164,6 +160,14 @@ def part_2(data):
         skip_size, position, numbers = sparse_hash(asc, numbers, skip_size, position)
     # return numbers
     dense = dense_hash(numbers)
-    print(f"Answer 10b: {clean_hash(dense)}")
+    return clean_hash(dense)
 
-part_2(data2)
+
+
+if __name__ == "__main__":
+    test_numbers = [0, 1, 2, 3, 4]
+    test_data = [3, 4, 1, 5]
+
+    numbers = part_1(numbers, data)
+    print(f"Answer 10a: {numbers[0] * numbers [1]}")
+    print(f"Answer 10b: {part_2(data2)}")
