@@ -4,24 +4,8 @@ from functools import reduce
 
 # DATA
 numbers = list(range(256))
-data = [189, 1, 111, 246, 254, 2, 0, 120, 215, 93, 255, 50, 84, 15, 94, 62]
+data = []
 
-# GOAL 1
-"""
-***REMOVED***
-***REMOVED***
-***REMOVED***
-
-***REMOVED***
-    ***REMOVED***
-    ***REMOVED***
-    ***REMOVED***
-
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-"""
 
 def part_1(numbers, data):
     skip_size = 0
@@ -31,7 +15,7 @@ def part_1(numbers, data):
         # check if length is greater than numbers list
         if i > len(numbers):
             continue
-        
+
         # find start and end postitions and create sublist
         start = position
         end = position + i
@@ -49,57 +33,26 @@ def part_1(numbers, data):
             sub_list.reverse()
             numbers[start:] = sub_list[:len_sub]
             numbers[:end] = sub_list[len_sub:]
-        
-        position = (position + i + skip_size) % len (numbers)
+
+        position = (position + i + skip_size) % len(numbers)
         # increment the skip_size
-        skip_size +=1
+        skip_size += 1
 
     return numbers
 
 
+data2 = ""
 
-# GOAL 2
-"""
-***REMOVED***
-***REMOVED***
-***REMOVED***
-
-***REMOVED***
-***REMOVED***
-***REMOVED***
-
-***REMOVED***
-***REMOVED***
-
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***.
-"""
-data2 = "***REMOVED***"
 
 # necessary hashing functions
 def sparse_hash(data, numbers, skip_size, position):
-    # create new input numbers 
-    
-    
+    # create new input numbers
+
     for i in data:
         # # check if length is greater than numbers list
         # if i > len(numbers):
         #     continue
-        
+
         # find start and end postitions and create sublist
         start = position
         end = position + i
@@ -117,19 +70,21 @@ def sparse_hash(data, numbers, skip_size, position):
             sub_list.reverse()
             numbers[start:] = sub_list[:len_sub]
             numbers[:end] = sub_list[len_sub:]
-        
-        position = (position + i + skip_size) % len (numbers)
+
+        position = (position + i + skip_size) % len(numbers)
         # increment the skip_size
-        skip_size +=1
+        skip_size += 1
 
     return skip_size, position, numbers
+
 
 def dense_hash(numbers):
     dense = []
     for i in range(16):
-        sub_hash = numbers[i*16:(i*16 + 16)]
+        sub_hash = numbers[i * 16 : (i * 16 + 16)]
         dense.append(hex(reduce(xor, sub_hash)))
     return dense
+
 
 def clean_hash(dense):
     clean = []
@@ -140,6 +95,7 @@ def clean_hash(dense):
         else:
             clean.append(temp)
     return "".join(clean)
+
 
 def part_2(data):
 
@@ -154,14 +110,15 @@ def part_2(data):
     # running 64 rounds
     skip_size = 0
     position = 0
-    numbers =  list(range(256)) # You need to only add this once, I misunderstood this before 
+    numbers = list(
+        range(256)
+    )  # You need to only add this once, I misunderstood this before
 
     for i in range(64):
         skip_size, position, numbers = sparse_hash(asc, numbers, skip_size, position)
     # return numbers
     dense = dense_hash(numbers)
     return clean_hash(dense)
-
 
 
 if __name__ == "__main__":

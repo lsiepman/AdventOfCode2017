@@ -10,17 +10,6 @@ with open("Data - Day07.txt") as file:
 
 # GOAL 1
 """
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-
 What is the name of the bottom program?
 """
 # ANSWER 1 Which disc isn't carried by an other disc
@@ -38,11 +27,6 @@ for i in carriers:
 
 # GOAL 2
 """
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-
 Given that exactly one program is the wrong weight, what would its weight need to be to balance the entire tower?
 """
 
@@ -51,7 +35,7 @@ Given that exactly one program is the wrong weight, what would its weight need t
 weights = {}
 for i in data:
     disc = re.search("^[a-z]+", i).group()
-    weights[disc] = int(re.search(fr"{disc} \(([0-9]+)\)", i).group(1))
+    weights[disc] = int(re.search(rf"{disc} \(([0-9]+)\)", i).group(1))
 
 stack = {}
 for i in data:
@@ -61,25 +45,28 @@ for i in data:
         top = re.findall("[a-z]+", after_arrow.group())
     else:
         top = []
-    
+
     stack[bottom] = top
-    
+
+
 def find_all_stacked(stack, key):
     stacked = [key]
     if key in stack.keys() and len(stack[key]) > 0:
         for i in stack[key]:
             stacked.extend(find_all_stacked(stack, i))
-    
+
     return stacked
-        
+
+
 total_weights = {}
 for i in list(stack.keys()):
     discs = find_all_stacked(stack, i)
     sum_weight = 0
     for w in discs:
         sum_weight += weights[w]
-    
+
     total_weights[i] = sum_weight
+
 
 def find_values_stack(total_weights, stack, key):
     temp_values = []
@@ -95,6 +82,7 @@ def find_values_stack(total_weights, stack, key):
 
     return temp_values, temp_keys
 
+
 def check_balance(total_weights, stack, key):
     temp_values, temp_keys = find_values_stack(total_weights, stack, key)
 
@@ -106,6 +94,7 @@ def check_balance(total_weights, stack, key):
     idx = temp_values.index(cnt)
 
     return temp_keys[idx]
+
 
 status = True
 key = "mkxke"
@@ -120,6 +109,10 @@ while status:
 key_before_offset = all_keys[-2]
 desired_values, keys = find_values_stack(total_weights, stack, key_before_offset)
 idx_offset = keys.index(all_keys[-1])
-offset = desired_values[idx_offset + 1 % len(desired_values)] - desired_values[idx_offset]
+offset = (
+    desired_values[idx_offset + 1 % len(desired_values)] - desired_values[idx_offset]
+)
 
-print(f"Program {all_keys[-1]} would need to be {weights[all_keys[-1]] + offset} instead of {weights[all_keys[-1]]}")
+print(
+    f"Program {all_keys[-1]} would need to be {weights[all_keys[-1]] + offset} instead of {weights[all_keys[-1]]}"
+)

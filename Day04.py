@@ -8,12 +8,6 @@ with open("Data - Day04.txt") as file:
 
 # GOAL 1
 """
-***REMOVED***
-***REMOVED***
-***REMOVED***
-
-***REMOVED***
-
 The system's full passphrase list is available as your puzzle input. How many passphrases are valid?
 """
 
@@ -29,12 +23,6 @@ for i in range(len(data)):
 
 print(f"Answer 4a: {num_valid}")
 
-# GOAL 2
-"""
-***REMOVED***
-***REMOVED***
-***REMOVED***
-"""
 
 def is_anagram(phrase):
     alpha_phrase = []
@@ -43,6 +31,7 @@ def is_anagram(phrase):
         alpha_phrase.append("".join(alpha_word))
 
     return alpha_phrase
+
 
 sorted_data = []
 sorted_data_sets = []

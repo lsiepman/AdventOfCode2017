@@ -10,35 +10,16 @@ Created on Sun Sep  6 21:29:00 2020.
 
 # DATA
 captcha = []
-with (open("Data - Day01.txt")) as file:
+with open("Data - Day01.txt") as file:
     for line in file:
         for char in line.strip():
             captcha.append(char)
 # GOAL 1
-"""
-***REMOVED***
-***REMOVED***
-***REMOVED***
-
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-
-***REMOVED***
-
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-
-What is the solution to your captcha?"""
+"""What is the solution to your captcha?"""
 
 # ANSWER 1
-captcha.append(captcha[0]) # takes care of the circular list
-captcha.append("x") # to end the list
+captcha.append(captcha[0])  # takes care of the circular list
+captcha.append("x")  # to end the list
 
 valid_pairs = []
 for idx, char in enumerate(captcha):
@@ -49,21 +30,10 @@ for idx, char in enumerate(captcha):
 
 print(f"The sum equals {sum(valid_pairs)}")
 captcha.pop()
-captcha.pop() # restore list to original state
+captcha.pop()  # restore list to original state
 
 # GOAL 2
-"""***REMOVED***
-
-***REMOVED***
-
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-
-What is the solution to your new captcha?"""
+"""What is the solution to your new captcha?"""
 
 # ANSWER 2
 valid_pairs = []
@@ -74,4 +44,3 @@ for idx, char in enumerate(captcha):
         valid_pairs.append(int(char))
 
 print(f"The sum equals {sum(valid_pairs)}")
-

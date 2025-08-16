@@ -10,68 +10,53 @@ with open("Data - Day12.txt") as file:
         data[key] = connections.split(", ")
 
 # GOAL 1
-"""***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-
-***REMOVED***
+"""
 How many programs are in the group that contains program ID 0?
 """
+
 
 # ANSWER 1
 def find_connections(data, group="0"):
     old = set(group)
     new = set()
 
-    while True: 
+    while True:
         for i in old:
             new.update(data[i])
 
         if len(old) == len(new):
-            return (len(new))
+            return len(new)
         else:
             old.update(new)
+
 
 print(f"Answer part 1: {find_connections(data)}")
 
 # GOAL 2
 """
-***REMOVED***
-***REMOVED***
-***REMOVED***
 Now, they would like you to determine the total number of groups.
 """
+
+
 def find_members(data, group):
     old = set([group])
     new = set()
 
-    while True: 
+    while True:
         old_length = len(old)
         for i in old:
             new.update(data[i])
 
         old = old | new
         if len(old) == old_length:
-            return old           
+            return old
+
 
 def find_groups(data):
     all_progs = set(data.keys())
     grouped_progs = set()
     num_groups = 0
-    
+
     while len(grouped_progs) < len(all_progs):
         not_in_common = all_progs - grouped_progs
         progs = find_members(data, group=list(not_in_common)[0])
@@ -80,7 +65,5 @@ def find_groups(data):
 
     return num_groups
 
+
 print(f"There are {find_groups(data)} groups in the data")
-
-    
-

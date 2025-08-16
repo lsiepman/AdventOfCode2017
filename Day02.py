@@ -9,46 +9,32 @@ Created on Sun Sep  6 22:06:15 2020.
 
 # DATA
 spreadsheet = []
-with(open("Data - Day02.txt")) as file:
+with open("Data - Day02.txt") as file:
     for line in file:
         row = line.split("\t")
         spreadsheet.append([int(i) for i in row])
 
 
 # GOAL 1
-"""
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+"""What is the checksum for the spreadsheet in your puzzle input?"""
 
-What is the checksum for the spreadsheet in your puzzle input?"""
 
 # ANSWER 1
 def calc_checksum(data):
     checksum = 0
     for sublist in data:
-        checksum += (max(sublist) - min(sublist))
+        checksum += max(sublist) - min(sublist)
 
     return checksum
+
 
 checksum = calc_checksum(spreadsheet)
 print(f"Answer 2a: {checksum}")
 
 # GOAL 2
-""""***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+""""What is the sum of each row's result in your puzzle input?"""
 
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
 
-What is the sum of each row's result in your puzzle input?
-"""
 def calc_divisible_rowsum(data):
     rowsum = 0
 
@@ -57,9 +43,10 @@ def calc_divisible_rowsum(data):
         for val in sublist:
             for idx in range(len_sublist):
                 if val != sublist[idx] and val % sublist[idx] == 0:
-                    rowsum += (val / sublist[idx])
+                    rowsum += val / sublist[idx]
 
     return rowsum
+
 
 rowsum = calc_divisible_rowsum(spreadsheet)
 print(f"Answer 2b: {int(rowsum)}")

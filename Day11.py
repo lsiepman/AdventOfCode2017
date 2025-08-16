@@ -7,21 +7,12 @@ with open("Data - Day11.txt") as file:
         for direction in line.strip().split(","):
             data.append(direction)
 
-# GOAL 1
-"""
-***REMOVED***
- ***REMOVED***
 
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-"""
 # ANSWER 1
 def find_kid(data):
-    y = 0 # North - South 
-    x = 0 # North West - South East
-        
+    y = 0  # North - South
+    x = 0  # North West - South East
+
     for direction in data:
         if direction == "n":
             y += 1
@@ -37,8 +28,9 @@ def find_kid(data):
         elif direction == "sw":
             x += 1
             y -= 1
-    
-    return abs(y), abs(x), abs(-x-y)
+
+    return abs(y), abs(x), abs(-x - y)
+
 
 location = find_kid(data)
 print(f"Distance to kid: {sum(location) / 2} tiles")
@@ -47,11 +39,13 @@ print(f"Distance to kid: {sum(location) / 2} tiles")
 """
 How many steps away is the furthest he ever got from his starting position?
 """
+
+
 def max_dist(data):
-    y = 0 # North - South 
-    x = 0 # North West - South East
+    y = 0  # North - South
+    x = 0  # North West - South East
     max_loc = 0
-    
+
     for direction in data:
         if direction == "n":
             y += 1
@@ -67,8 +61,9 @@ def max_dist(data):
         elif direction == "sw":
             x += 1
             y -= 1
-        max_loc = max(abs(y), abs(x), abs(-x-y), max_loc)
+        max_loc = max(abs(y), abs(x), abs(-x - y), max_loc)
 
     return max_loc
+
 
 print(f"Max distance kid: {max_dist(data)}")
